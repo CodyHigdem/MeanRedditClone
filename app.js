@@ -1,4 +1,17 @@
-var app = angular.module('meannit', [])
+var app = angular.module('meannit', ['ui.router'])
+.config([
+	'$stateProvider',
+	'$urlRouterProvider',
+	function($stateProvider, $urlRouterProvider){
+		$stateProvider
+		.state('home', {
+			url: '/home',
+			templateUrl: '/home.html',
+			controller: 'MainCtrl'
+		});
+
+		$urlRouterProvider.otherwise('home');
+}])
 .factory('posts', [function(){
 	var o = {
 		posts: [{title: 'post hello', link: '', upvotes: 1}]
