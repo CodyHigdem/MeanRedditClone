@@ -1,14 +1,17 @@
-var app = angular.module('meannit', []);
+var app = angular.module('meannit', [])
+.factory('posts', [function(){
+	var o = {
+		posts: [{title: 'post hello', link: '', upvotes: 1}]
+	};
+	return o;
+}])
 
 app.controller('MainCtrl', [
 	'$scope',
-	function($scope){
+	'posts',
+	function($scope, posts){
 		$scope.test = 'Hello World! Woot';
-		$scope.posts = [
-		{title: 'post1', upvotes: 5},
-		{title: 'post2', upvotes: 1},
-		{title: 'post3', upvotes: 12},
-		{title: 'post4', upvotes: 76},];
+		$scope.posts = posts.posts;
 		$scope.addPost = function(){
 			if(!$scope.title || $scope.title === '') { return; }
 		  	$scope.posts.push({
