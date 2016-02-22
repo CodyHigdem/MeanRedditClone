@@ -39,7 +39,8 @@ app.controller('MainCtrl', [
 		  		upvotes: 0,
 		  		comments: [
 		  		{ author: 'joe', body: 'cool post', upvotes: 0},
-		  		{ author: 'bob', body: 'rock on', upvotes: 3}] 
+		  		{ author: 'bob', body: 'rock on', upvotes: 3}
+		  		] 
 		  	});
 		  	$scope.title = '';
 		  	$scope.link = '';
@@ -54,5 +55,17 @@ app.controller('MainCtrl', [
 		'$stateParams',
 		'posts',
 		function($scope, $stateParams, posts){
-			$scope.post = posts.post[$stateParams.id];
+			$scope.post = posts.posts[$stateParams.id];
+
+			$scope.addComment = function(){
+				if($scope.body ==='') { return; }
+
+			  	$scope.post.comments.push({
+			  		body: $scope.body, 
+			  		author: 'user',
+			  		upvotes: 0
+		  		});
+
+			  	$scope.body = '';
+			}
 		}]);
